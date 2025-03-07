@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?xml-model href="./BelliniSchema.sch" 
+            type="application/xml" 
+            schematypens="http://purl.oclc.org/dsdl/schematron"?> 
+<TEI xmlns="http://www.tei-c.org/ns/1.0">
+   <teiHeader>
+      <fileDesc>
+         <titleStmt>
+            <title/>
+         </titleStmt>
+         <publicationStmt>
+            <publisher/>
+         </publicationStmt>
+         <sourceDesc>
+            <bibl/>
+         </sourceDesc>
+      </fileDesc>
+   </teiHeader>
+   <text>
+      <body><div>
+         <pb/>  <!-- This should trigger the Schematron error because @n is missing -->
+      </div></body>
+   </text>
+</TEI>
