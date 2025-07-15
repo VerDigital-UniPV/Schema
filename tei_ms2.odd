@@ -1,0 +1,197 @@
+<TEI xmlns="http://www.tei-c.org/ns/1.0" xml:lang="en" n="testms"
+  xmlns:mei="http://www.music-encoding.org/ns/mei">
+  <teiHeader>
+    <fileDesc>
+      <titleStmt>
+        <title>TEI for Manuscript Description</title>
+        <author>Sebastian Rahtz</author>
+      </titleStmt>
+      <publicationStmt>
+        <publisher>TEI Consortium</publisher>
+        <availability status="free">
+          <licence target="http://creativecommons.org/licenses/by-sa/3.0/">
+          Distributed under a Creative Commons Attribution-ShareAlike
+          3.0 Unported License</licence>
+          <licence target="http://www.opensource.org/licenses/BSD-2-Clause">
+            <p>Copyright 2013 TEI Consortium.</p>
+            <p>All rights reserved.</p>
+            <p>Redistribution and use in source and binary forms, with
+            or without modification, are permitted provided that the
+            following conditions are met:</p>
+            <list>
+              <item>Redistributions of source code must retain the
+              above copyright notice, this list of conditions and the
+              following disclaimer.</item>
+              <item>Redistributions in binary form must reproduce the
+              above copyright notice, this list of conditions and the
+              following disclaimer in the documentation and/or other
+              materials provided with the distribution.</item>
+            </list>
+            <p>This software is provided by the copyright holders and
+            contributors "as is" and any express or implied
+            warranties, including, but not limited to, the implied
+            warranties of merchantability and fitness for a particular
+            purpose are disclaimed. In no event shall the copyright
+            holder or contributors be liable for any direct, indirect,
+            incidental, special, exemplary, or consequential damages
+            (including, but not limited to, procurement of substitute
+            goods or services; loss of use, data, or profits; or
+            business interruption) however caused and on any theory of
+            liability, whether in contract, strict liability, or tort
+            (including negligence or otherwise) arising in any way out
+            of the use of this software, even if advised of the
+            possibility of such damage.</p>
+          </licence>
+          <p>TEI material can be licensed differently depending on the
+          use you intend to make of it. Hence it is made available
+          under both the CC+BY and BSD-2 licences. The CC+BY licence
+          is generally appropriate for usages which treat TEI content
+          as data or documentation. The BSD-2 licence is generally
+          appropriate for usage of TEI content in a software
+          environment. For further information or clarification,
+          please contact the <ref target="mailto:info@tei-c.org">TEI
+          Consortium</ref>.</p>
+        </availability>
+      </publicationStmt>
+      <sourceDesc>
+        <p>Written from scratch.</p>
+      </sourceDesc>
+    </fileDesc><encodingDesc><appInfo><application ident="RomaJS" version="1.1.2" when="2025-07-02T11:20:22.799Z"><desc>File edited with <ref target="https://github.com/TEIC/romajs">RomaJS</ref></desc></application></appInfo></encodingDesc>
+  </teiHeader>
+  <text>
+    <body>
+      <p>TEI for manuscript description</p>
+      
+      <schemaSpec ident="tei_romaLib" start="TEI" prefix="tei_" targetLang="en" docLang="en"
+        defaultExceptions="http://www.tei-c.org/ns/1.0 teix:egXML http://www.music-encoding.org/ns/mei">
+        
+        <moduleSpec ident="libretto">
+          <desc>Customization for opera libretto</desc>
+        </moduleSpec>
+        
+        <moduleRef key="tei"/>           
+        <moduleRef key="core"/>          
+        <moduleRef key="header"/>
+        <moduleRef key="libretto" include="sg singer"/>                
+        <moduleRef key="textstructure"/> 
+        <moduleRef key="drama"/>
+        <moduleRef key="verse"/>
+        <moduleRef key="textcrit"/>
+        <moduleRef key="linking"/>
+        <moduleRef key="namesdates"/>
+        <moduleRef key="figures"/>
+        <moduleRef key="transcr"/>
+
+<!--        <moduleRef key="corpus"></moduleRef>
+        <moduleRef key="libretto" include="sg singer"/>
+        <moduleRef key="textcrit" include="app rdg"/>
+        <moduleRef key="drama" include="castItem castList role roleDesc set"/>
+        <moduleRef key="header" include="availability correction edition editionStmt
+          editorialDecl encodingDesc fileDesc idno language langUsage license normalization
+          profileDesc projectDesc publicationStmt seriesStmt sourceDesc tagsDecl teiHeader titleStmt"/>
+        <moduleRef key="linking"/>
+        <!-\-    <moduleRef key="core" include="add author bibl choice date editor head hi l lg
+          name note p pb publisher quote resp respStmt sic sp speaker stage title"/>-\->
+        <moduleRef key="core"/>
+        <moduleRef key="tei"/>
+        <moduleRef key="textstructure" include="body div front text titlePage titlePart trailer"/>
+        <moduleRef key="namesdates" include="persName person"/>
+        <moduleRef key="transcr" include="facsimile graphic sourceDoc surface surfaceGrp zone"/>
+        <moduleRef key="figures"/>
+        <!-\-        <moduleRef key="msdescription"/>-\->
+        <!-\- <particDesc> ? necessary? Would be only 'corpus' module element -\->-->  
+        
+
+        <elementSpec ident="sg" module="libretto" mode="add">  
+          <desc>111 BBBBBBContains a sequence of lines grouped into a stanza or other larger structure.</desc>
+          <classes>
+            <memberOf key="model.libretto"/>
+            <memberOf key="model.divPart.drama"/>
+            <memberOf key="model.global"/>
+            <memberOf key="model.performerLike"/>
+            <memberOf key="model.episodePart"/>
+            <memberOf key="att.ascribed.directed"/>
+            <memberOf key="att.global"/>
+          </classes>
+          <content>
+            <sequence>
+    <!-- Should not be a sequence, 
+    all should occur freely
+    should be a better way than repeating
+    0 or more
+    <interleave> would be good, if
+    possible to insert here
+    -->
+            <elementRef key="singer" minOccurs="0" maxOccurs="unbounded"/>
+              <classRef key="model.global" minOccurs="0" maxOccurs="unbounded"/>
+              <classRef key="model.divPart" minOccurs="0" maxOccurs="unbounded"/>
+              <classRef key="model.stageLike" minOccurs="0" maxOccurs="unbounded"/>             
+              <classRef key="model.global" minOccurs="0" maxOccurs="unbounded"/>
+              <classRef key="model.divPart" minOccurs="0" maxOccurs="unbounded"/>
+            </sequence> 
+          </content>
+          
+          <attList>
+            <attDef ident="who" mode="change">
+              <desc>References the character associated with this sung passage.</desc>
+<!--          <datatype>
+                <dataRef name="IDREFS"/>
+              </datatype>-->
+            </attDef>
+            <attRef name="att.global"/>
+          </attList>
+        </elementSpec>
+        
+        <elementSpec ident="singer" module="libretto" mode="add">
+          <desc>Contains a specialized form of heading or label for the singer or singers of a sung
+            fragment; analogous to &lt;speaker&gt;.</desc>
+          <classes>
+            <memberOf key="model.global"/>
+            <memberOf key="model.labelLike"/>
+            <memberOf key="model.limitedPhrase"/>
+          </classes>
+          <content>
+            <classRef key="macro.phraseSeq"/>
+          </content>
+        </elementSpec>
+        
+        <!--<elementSpec ident="voice" module="libretto" mode="add">
+          <desc>Vocal designation of the role, e.g., soprano, alto, tenor, etc.</desc>
+          <classes>
+            <memberOf key="model.global"/>
+            <memberOf key="model.descLike"/>
+          </classes>
+          <content>
+            <classRef key="macro.phraseSeq"/>
+          </content>
+        </elementSpec>-->
+        
+        <elementSpec ident="perfRes" module="libretto" mode="add" ns="http://www.music-encoding.org/ns/mei">
+          <desc>Vocal designation of the role, e.g., soprano, alto, tenor, etc.</desc>
+          <classes>
+            <memberOf key="att.global"/>
+            <!--<memberOf key="model.global"/>-->
+            <!--<memberOf key="model.descLike"/>-->
+          </classes>
+          <content>
+            <!--<classRef key="macro.phraseSeq"/>-->
+            <textNode/>
+          </content>
+        </elementSpec>
+        
+        <elementSpec ident="castItem" module="drama" mode="change">
+          <content>
+            <sequence maxOccurs="unbounded">
+              <elementRef key="role" minOccurs="0"/>
+              <!--<elementRef key="perfRes" minOccurs="0" source="file:/Users/mark/Downloads/mei-all%20(1).odd" />-->
+              <elementRef key="perfRes" minOccurs="0"/>
+              <elementRef key="roleDesc" minOccurs="0"/>
+<!--              <classRef key="model.global" minOccurs="0" maxOccurs="unbounded"/>-->
+            </sequence>
+          </content>
+        </elementSpec>
+        
+      </schemaSpec>
+    </body>
+  </text>
+</TEI>
