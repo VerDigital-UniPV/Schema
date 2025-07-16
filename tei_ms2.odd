@@ -1,5 +1,12 @@
-<TEI xmlns="http://www.tei-c.org/ns/1.0" xml:lang="en" n="testms"
-  xmlns:mei="http://www.music-encoding.org/ns/mei">
+<?xml-model href="https://www.tei-c.org/release/xml/tei/custom/schema/relaxng/tei_odds.rng"
+            type="application/xml"
+            schematypens="http://relaxng.org/ns/structure/1.0"?>
+<?xml-model href="https://www.tei-c.org/release/xml/tei/custom/schema/relaxng/tei_odds.rng"
+            type="application/xml"
+            schematypens="http://purl.oclc.org/dsdl/schematron"?>
+<TEI xmlns="http://www.tei-c.org/ns/1.0" 
+  xmlns:sch="http://purl.oclc.org/dsdl/schematron"
+  xmlns:mei="http://www.music-encoding.org/ns/mei" xml:lang="en" n="testms">
   <teiHeader>
     <fileDesc>
       <titleStmt>
@@ -70,32 +77,26 @@
         </moduleSpec>
         
         <moduleRef key="tei"/>           
-        <moduleRef key="core"/>          
+        <moduleRef key="core" include="add author bibl choice corr date editor head hi l lg
+          name note p pb publisher quote resp respStmt sic sp speaker stage title"/>          
         <moduleRef key="header"/>
-        <moduleRef key="libretto" include="sg singer"/>                
-        <moduleRef key="textstructure"/> 
+        <moduleRef key="libretto" include="sg singer"/>
+        <!-- removing mostly epistolary elements -->
+        <moduleRef key="textstructure" exclude="argument closer floatingText 
+          opener postscript salute signed"/> 
+        <!-- keeping all performance elements, making sure can accomodate
+        video opera such as Perfect Lives-->
         <moduleRef key="drama"/>
         <moduleRef key="verse"/>
-        <moduleRef key="textcrit"/>
+        <moduleRef key="textcrit" />
         <moduleRef key="linking"/>
+        <!-- keeping the entire namesdates module here. includes location elements -->
         <moduleRef key="namesdates"/>
         <moduleRef key="figures"/>
-        <moduleRef key="transcr"/>
-
-<!--        <moduleRef key="corpus"></moduleRef>
-        <moduleRef key="libretto" include="sg singer"/>
-        <moduleRef key="textcrit" include="app rdg"/>
-        <moduleRef key="drama" include="castItem castList role roleDesc set"/>
-        <moduleRef key="header" include="availability correction edition editionStmt
-          editorialDecl encodingDesc fileDesc idno language langUsage license normalization
-          profileDesc projectDesc publicationStmt seriesStmt sourceDesc tagsDecl teiHeader titleStmt"/>
-        <moduleRef key="linking"/>
-        <!-\-    <moduleRef key="core" include="add author bibl choice date editor head hi l lg
-          name note p pb publisher quote resp respStmt sic sp speaker stage title"/>-\->
-        <moduleRef key="core"/>
-        <moduleRef key="tei"/>
-        <moduleRef key="textstructure" include="body div front text titlePage titlePart trailer"/>
-        <moduleRef key="namesdates" include="persName person"/>
+        <moduleRef key="transcr" include="facsimile graphic sourceDoc surface surfaceGrp zone"/>
+        <!-- optional: include manuscript description module -->
+        <!-- <moduleRef key="msdescription"/> -->
+<!--
         <moduleRef key="transcr" include="facsimile graphic sourceDoc surface surfaceGrp zone"/>
         <moduleRef key="figures"/>
         <!-\-        <moduleRef key="msdescription"/>-\->
@@ -183,15 +184,59 @@
           <content>
             <sequence maxOccurs="unbounded">
               <elementRef key="role" minOccurs="0"/>
-              <!--<elementRef key="perfRes" minOccurs="0" source="file:/Users/mark/Downloads/mei-all%20(1).odd" />-->
+<!--          <elementRef key="perfRes" minOccurs="0" source="file:/Users/mark/Downloads/mei-all%20(1).odd" />-->
               <elementRef key="perfRes" minOccurs="0"/>
               <elementRef key="roleDesc" minOccurs="0"/>
-<!--              <classRef key="model.global" minOccurs="0" maxOccurs="unbounded"/>-->
+<!--          <classRef key="model.global" minOccurs="0" maxOccurs="unbounded"/>-->
             </sequence>
           </content>
         </elementSpec>
+ 
+<!-- 
+        <constraintSpec ident="libretto-rules" scheme="schematron">
+          <desc>Custom Schematron rules for libretto validation</desc>
+            <constraint>
+              <sch:schema xmlns:sch="http://purl.oclc.org/dsdl/schematron"
+                xmlns:tei="http://www.tei-c.org/ns/1.0"
+                queryBinding="xslt2">
+        <sch:pattern>
+          <sch:rule context="tei:pb">
+            <sch:assert test="@n">Each &lt;pb&gt; element must have an @n attribute.</sch:assert>
+          </sch:rule>
+        </sch:pattern>
         
-      </schemaSpec>
+        <sch:pattern id="speakerID">
+          <sch:rule context="tei:sp">
+            <sch:assert test="@who">
+              Each &lt;sp&gt; element must have a @who attribute
+            </sch:assert>
+            <sch:assert test="@who and matches(@who, '^#')">
+              The @who attribute is required and must begin with "#".
+            </sch:assert>
+            
+            <!-/-sch:assert test="@who and matches(@who, '^#') and not(matches(@who, '^#[a-z]+$'))">Each @who reference must be lower case</sch:assert>-/->
+          </sch:rule>
+        </sch:pattern>
+        
+        <sch:pattern id="stageType">
+          <sch:rule context="tei:stage">
+            <sch:assert test="@type">
+              Every &lt;stage&gt; element must have a @type attribute
+            </sch:assert>
+            <sch:assert test="every $t in tokenize(@type, '\s+') satisfies $t = 
+              ('setting', 'entrance', 'exit', 'business', 'novelistic', 'delivery', 'modifier', 'location', 'mixed')">
+              @type must be one of TEI recommended values: 
+              setting, entrance, exit, business, novelistic, delivery, modifier
+            </sch:assert>
+            <sch:assert test="normalize-space(@type)">
+              @type cannot be empty
+            </sch:assert>
+          </sch:rule>
+        </sch:pattern>
+              </sch:schema>
+          </constraint>
+        </constraintSpec> -->
+      </schemaSpec> 
     </body>
   </text>
 </TEI>
