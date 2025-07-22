@@ -116,19 +116,22 @@
           </classes>
           <content>
             <sequence>
-    <!-- Should not be a sequence, 
-    all should occur freely
-    should be a better way than repeating
-    0 or more
-    <interleave> would be good, if
-    possible to insert here
+    <!-- Should not be a sequence, all should occur freely
+    should be a better way than repeating 0 or more
+    <interleave> would be good, if possible to insert here
     -->
             <elementRef key="singer" minOccurs="0" maxOccurs="unbounded"/>
-              <classRef key="model.global" minOccurs="0" maxOccurs="unbounded"/>
+            
+              <alternate minOccurs="1" maxOccurs="unbounded">
+                <elementRef key="lg"/>
+                <elementRef key="stage"/>
+              </alternate>
+            
+              <!--<classRef key="model.global" minOccurs="0" maxOccurs="unbounded"/>
               <classRef key="model.divPart" minOccurs="0" maxOccurs="unbounded"/>
               <classRef key="model.stageLike" minOccurs="0" maxOccurs="unbounded"/>             
               <classRef key="model.global" minOccurs="0" maxOccurs="unbounded"/>
-              <classRef key="model.divPart" minOccurs="0" maxOccurs="unbounded"/>
+              <classRef key="model.divPart" minOccurs="0" maxOccurs="unbounded"/>-->
             </sequence> 
           </content>
           
@@ -193,18 +196,21 @@
         </elementSpec>
  
 <!-- 
-        <constraintSpec ident="libretto-rules" scheme="schematron">
-          <desc>Custom Schematron rules for libretto validation</desc>
-            <constraint>
-              <sch:schema xmlns:sch="http://purl.oclc.org/dsdl/schematron"
-                xmlns:tei="http://www.tei-c.org/ns/1.0"
-                queryBinding="xslt2">
-        <sch:pattern>
-          <sch:rule context="tei:pb">
-            <sch:assert test="@n">Each &lt;pb&gt; element must have an @n attribute.</sch:assert>
-          </sch:rule>
-        </sch:pattern>
-        
+    <constraintSpec ident="libretto-rules" scheme="schematron">
+      <desc>Custom Schematron rules for libretto validation</desc>
+        <constraint>
+          <sch:schema xmlns:sch="http://purl.oclc.org/dsdl/schematron"
+            xmlns:tei="http://www.tei-c.org/ns/1.0"
+            queryBinding="xslt2">
+          <sch:pattern>
+            <sch:rule context="tei:pb">
+              <sch:assert test="@n">Each &lt;pb&gt; element must have an @n attribute.</sch:assert>
+            </sch:rule>
+          </sch:pattern>          
+          </sch:schema>
+        </constraint>
+    </constraintSpec>
+       
         <sch:pattern id="speakerID">
           <sch:rule context="tei:sp">
             <sch:assert test="@who">
@@ -236,6 +242,7 @@
               </sch:schema>
           </constraint>
         </constraintSpec> -->
+
       </schemaSpec> 
     </body>
   </text>
