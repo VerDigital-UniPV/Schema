@@ -104,7 +104,7 @@
         
 
         <elementSpec ident="sg" module="libretto" mode="add">  
-          <desc>111 BBBBBBContains a sequence of lines grouped into a stanza or other larger structure.</desc>
+          <desc>Contains a sequence of lines grouped into a stanza or other larger structure.</desc>
           <classes>
             <memberOf key="model.libretto"/>
             <memberOf key="model.divPart.drama"/>
