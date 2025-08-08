@@ -159,7 +159,7 @@
           </content>
         </elementSpec>
 
-        <constraintSpec ident="libretto-rules" scheme="schematron">
+<!--        <constraintSpec ident="libretto-rules" scheme="schematron">
           <constraint>
             <sch:schema>
               <sch:pattern>
@@ -172,7 +172,7 @@
               </sch:pattern>
             </sch:schema>
           </constraint>
-        </constraintSpec>
+        </constraintSpec>  -->
 
         <!-- 
                  
