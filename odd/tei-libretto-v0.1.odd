@@ -55,7 +55,7 @@
         </moduleSpec>
 
         <moduleRef key="tei"/>
-        <moduleRef key="core" include="add author bibl choice corr date editor head hi l lg
+        <moduleRef key="core" include="add author bibl choice corr date editor head hi l lb lg
           name note p pb publisher quote resp respStmt sic sp speaker stage title"/>
         <moduleRef key="header"/>
         <moduleRef key="libretto"/>
@@ -123,7 +123,8 @@
             <classRef key="macro.phraseSeq"/>
           </content>
         </elementSpec>
-
+        
+        
         <!--< role voice solution in TEI, create new element -->
         <!--    <elementSpec ident="voice" module="libretto" mode="add">
           <desc>Vocal designation of the role, e.g., soprano, alto, tenor, etc.</desc>
