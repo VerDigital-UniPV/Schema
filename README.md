@@ -13,4 +13,27 @@ Other modules are included in their entirety. These are __drama__, __verse__, __
 
 The `stage`element follows a <a href="https://www.tei-c.org/release/doc/tei-p5-doc/en/html/DR.html#DRSTA">TEI P5 recommendation</a> to define the range of permitted values for `@type`. The list therefore is closed but can be easily expanded in the element's `<attList>`. 
 
+setting, entrance, exit, business, novelistic, delivery, modifier, mixed
+https://www.tei-c.org/release/doc/tei-p5-doc/en/html/ref-stage.html#tei_att.type
+(Note	
+If the value mixed is used, it must be the only value. Multiple values may however be supplied if a single stage direction performs multiple functions, for example is both an entrance and a modifier.)
+The who attribute may be used to indicate more precisely the person or persons participating in the action described by the stage direction.
+
+
+
+<stage type="setting">The throne descends.</stage>
+<stage type="setting">Music</stage>
+<stage type="entrance">Enter Husband as being thrown off his horse.</stage>
+<stage type="exit">Exit pursued by a bear.</stage>
+<stage type="business">He quickly takes the stone out.</stage>
+<stage type="delivery">To Lussurioso.</stage>
+<stage type="delivery">Aside.</stage>
+<stage type="delivery">Not knowing what to say.</stage>
+<stage type="costume">Disguised as Ansaldo.</stage>
+<stage type="location">At a window.</stage>
+<stage type="novelistic">Having had enough, and embarrassed
+ for the family.</stage>
+
+
+
 Further documentation with __examples__ coming soon.
