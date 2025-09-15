@@ -9,6 +9,7 @@ Allowed elements from select modules are highly restricted. They are generally i
 
 Other modules are included in their entirety. These are __drama__, __verse__, __textcrit__, __linking__, __namesdates__, and __figures__. The entire drama module is included since it contains a variety of elements relevant for transcribing performances and staged musical works in other media. The msdescription is available for handwritten sources, but is left commented out in the ODD file. Note that the __namesdates__ module also includes elements related to location.
 
+<!--  documentation section under development 
 ### Stage Directions
 
 The `stage`element follows a <a href="https://www.tei-c.org/release/doc/tei-p5-doc/en/html/DR.html#DRSTA">TEI P5 recommendation</a> to define the range of permitted values for `@type`. The list therefore is closed but can be easily expanded in the element's `<attList>`. 
@@ -18,8 +19,6 @@ https://www.tei-c.org/release/doc/tei-p5-doc/en/html/ref-stage.html#tei_att.type
 (Note	
 If the value mixed is used, it must be the only value. Multiple values may however be supplied if a single stage direction performs multiple functions, for example is both an entrance and a modifier.)
 The who attribute may be used to indicate more precisely the person or persons participating in the action described by the stage direction.
-
-
 
 <stage type="setting">The throne descends.</stage>
 <stage type="setting">Music</stage>
@@ -34,6 +33,6 @@ The who attribute may be used to indicate more precisely the person or persons p
 <stage type="novelistic">Having had enough, and embarrassed
  for the family.</stage>
 
-
+-->
 
 Further documentation with __examples__ coming soon.
