@@ -10,38 +10,51 @@
     <fileDesc>
       <titleStmt>
         <title>TEI for Libretti</title>
-        <author>Mark Saccomano</author>
+          <respStmt>
+            <resp>Authored by</resp>
+            <name xml:id="MS" sameas="#verDigTeam_ms">Mark Saccomano</name>
+          </respStmt>
+        <respStmt>
+          <resp>Project Team of VerDigital</resp>
+          <persName xml:id="verDigTeam_cm" role="pdr"
+            ref="https://orcid.org/0000-0002-6758-5870">Candida Mantica</persName>
+          <persName xml:id="verDigTeam_fm" role="res"
+            ref="https://orcid.org/0000-0002-0219-5898">Francesco Maccarini</persName>
+          <persName xml:id="verDigTeam_gm" role="res">Giovanni Meriani</persName>
+          <persName xml:id="verDigTeam_ms" role="res"
+            ref="https://orcid.org/0000-0002-4635-7684">Mark Saccomano</persName>
+        </respStmt>
+        <funder>
+          <ident type="projectNumber"></ident>
+          <name></name>
+        </funder>
       </titleStmt>
       <publicationStmt>
-        <p/>
-      </publicationStmt>
-      <!--      <publicationStmt>
-        <publisher>TEI Consortium</publisher>
-        <availability status="free">
-          <licence target="http://creativecommons.org/licenses/by-sa/3.0/">
-          Distributed under a Creative Commons Attribution-ShareAlike
-          3.0 Unported License</licence>
-+
-          <p>TEI material can be licensed differently depending on the
-          use you intend to make of it. Hence it is made available
-          under both the CC+BY and BSD-2 licences. The CC+BY licence
-          is generally appropriate for usages which treat TEI content
-          as data or documentation. The BSD-2 licence is generally
-          appropriate for usage of TEI content in a software
-          environment. For further information or clarification,
-          please contact the <ref target="mailto:info@tei-c.org">TEI
-          Consortium</ref>.</p>
+        <publisher>VerDigital</publisher>
+        <add>
+          <!-- project description-->
+        </add>
+      </publisher>
+        <date when="2025"/>
+        <availability>
+          <licence target="http://creativecommons.org/licenses/by-sa/4.0/">
+            Creative Commons Attribution-ShareAlike 4.0 International </licence>
         </availability>
-      </publicationStmt>-->
+      </publicationStmt>
       <sourceDesc>
-        <p>Written from scratch.</p>
+        <p>Original work by the VerDigital project</p>
       </sourceDesc>
     </fileDesc>
-    <encodingDesc>
-      <projectDesc>
-        <p/>
-      </projectDesc>
-    </encodingDesc>
+    <revisionDesc>
+      <change n="1" when="" who="#MS">
+        <desc>Initial setup of the ODD.</desc>
+      </change>
+      <!--
+      <change n="2" when="" who="#MS">
+        <desc>Final adjustments to the ODD.</desc>
+      </change>
+      -->
+    </revisionDesc>
   </teiHeader>
   <text>
     <body>
@@ -56,27 +69,25 @@
 
         <moduleRef key="tei"/>
         <moduleRef key="core" include="add author bibl choice corr date editor head hi l lb lg
-          name note p pb publisher quote resp respStmt sic sp speaker stage title"/>
+          name note orig p pb publisher quote reg resp respStmt sic sp speaker stage title"/>
         <moduleRef key="header"/>
         <moduleRef key="libretto"/>
-        <!-- removing mostly epistolary elements -->
+        <!-- excluding mostly epistolary elements -->
         <moduleRef key="textstructure" exclude="argument closer floatingText 
           opener postscript salute signed"/>
-        <!-- keeping all performance elements, making sure can accomodate
-             video opera such as Perfect Lives-->
+        <!-- include all performance elements, including video-->
         <moduleRef key="drama"/>
         <moduleRef key="verse"/>
         <moduleRef key="textcrit"/>
         <moduleRef key="linking"/>
-        <!-- keeping the entire namesdates module here. includes location elements -->
+        <!-- include the entire namesdates module here; includes location elements -->
         <moduleRef key="namesdates"/>
         <moduleRef key="figures"/>
         <moduleRef key="transcr" include="facsimile graphic sourceDoc surface surfaceGrp zone"/>
         <!-- optional: include manuscript description module -->
         <!-- <moduleRef key="msdescription"/> -->
-        <!--        <moduleRef key="figures"/>
-        <!-\- <particDesc> ? necessary? Would be only 'corpus' module element -\->-->
-
+        <!--        <moduleRef key="figures"/> -->
+        <!-- <particDesc> ? necessary? Would be only 'corpus' module element -->
 
         <elementSpec ident="sg" module="libretto" mode="add">
           <desc>Contains a sequence of lines grouped into a stanza or other larger structure.</desc>
@@ -177,14 +188,14 @@
 
         <!-- 
                  
-                            <sch:pattern id="speakerID">
-                              <sch:rule context="tei:sp">
-                                <sch:assert test="@who">
-                                  Each &lt;sp&gt; element must have a @who attribute
-                                </sch:assert>
-                                <sch:assert test="@who and matches(@who, '^#')">
-                                  The @who attribute is required and must begin with "#".
-                                </sch:assert>
+      <sch:pattern id="speakerID">
+        <sch:rule context="tei:sp">
+          <sch:assert test="@who">
+            Each &lt;sp&gt; element must have a @who attribute
+          </sch:assert>
+          <sch:assert test="@who and matches(@who, '^#')">
+            The @who attribute is required and must begin with "#".
+          </sch:assert>
             
             <!-/-sch:assert test="@who and matches(@who, '^#') and not(matches(@who, '^#[a-z]+$'))">Each @who reference must be lower case</sch:assert>-/->
           </sch:rule>
@@ -203,12 +214,12 @@
           </sch:schema>
         </constraint>
     </constraintSpec>
-
+-->
+<!--       
 https://www.tei-c.org/release/doc/tei-p5-doc/en/html/ref-stage.html#tei_att.type
 Note	
 *If the value mixed is used, it must be the only value. Multiple values may however be supplied if a single stage direction performs multiple functions, for example is both an entrance and a modifier.
 *The who attribute may be used to indicate more precisely the person or persons participating in the action described by the stage direction.
-
 
         <sch:pattern id="stageType">
           <sch:rule context="tei:stage">
